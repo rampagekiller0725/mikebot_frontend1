@@ -13,7 +13,7 @@ export const initialUserState = {
     gamefi_tokens_level: 0
 }
 
-const baseUrl = 'http://95.216.227.115:4000';
+const baseUrl = 'https://mikebot-backend.onrender.com';
 export const request = (url, method, data) => {
     return axios(baseUrl + url, {
         method: method,
