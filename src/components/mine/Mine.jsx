@@ -15,6 +15,7 @@ const Mine = ({username}) => {
         });
 
         request('/findUser', 'POST', {name: username}).then((res) => {
+            console.log("finduser backend called");
             setUser(res.data.user);
         });
     }, [])
@@ -82,7 +83,7 @@ const Mine = ({username}) => {
                 </div>
             </div>
             <div data-aos="flip-left" className='flex relative flex-col items-center justify-center area'>
-                <img src={"/minee.svg"} width={270} height={270} className="" alt='' onClick={increaseCoin} />
+                <img src={"/lvl" + user.level + ".png"} width={270} height={270} className="mineimg" alt='' onClick={increaseCoin} />
             </div>
             <div className='flex flex-row justify-between text-white'>
                 <div className='flex flex-row text-white items-center gap-2'>

@@ -15,3 +15,7 @@ code {
 @tailwind components;
 @tailwind utilities;
 
+.mineimg {
+  border-radius: 50%; 
+  height: 270px!important;
+}

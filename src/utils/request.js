@@ -14,6 +14,7 @@ export const initialUserState = {
 }
 
 const baseUrl = 'https://mikebot-backend.onrender.com';
+// const baseUrl = 'http://localhost:4000'
 export const request = (url, method, data) => {
     return axios(baseUrl + url, {
         method: method,

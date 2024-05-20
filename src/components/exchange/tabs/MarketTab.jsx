@@ -1,4 +1,5 @@
 import React from 'react'
+import { market } from '../../../utils/exchange_settings'
 
 const MarketTab = ({user, setUser}) => {
     const data = [
@@ -6,72 +7,66 @@ const MarketTab = ({user, setUser}) => {
             key: "fan_tokens",
             title: "Fan tokens ",
             content: 'Profit per hours',
-            perhourValue: "965",
             image: "/coinmarketcap.svg",
             lvl: "lvl ",
             image2: "/coin1.svg",
-            value: "10K"
         },
         {
             key: "staking",
             title: "Staking ",
             content: 'Profit per hours',
-            perhourValue: "600",
             image: "/coinmarketcap.svg",
             lvl: "lvl ",
             image2: "/coin1.svg",
-            value: "10K"
         },
         {
             key: "btc_pairs",
             title: "BTC pairs",
             content: 'Profit per hours',
-            perhourValue: "40",
             image: "/coinmarketcap.svg",
             lvl: "lvl ",
             image2: "/coin1.svg",
-            value: "200"
         },
         {
             key: "eth_pairs",
             title: "ETH pairs ",
             content: 'Profit per hours',
-            perhourValue: "40",
             image: "/coinmarketcap.svg",
             lvl: "lvl ",
             image2: "/coin1.svg",
-            value: "300"
         },
         {
             key: "top_10_cmc_pairs",
             title: "Top 10 CMC Pairs ",
             content: 'Profit per hours',
-            perhourValue: "80",
             image: "/coinmarketcap.svg",
             lvl: "lvl ",
             image2: "/coin1.svg",
-            value: "1K"
         },
         {
             key: "gamefi_tokens",
             title: "GameFi tokens ",
             content: 'Profit per hours',
-            perhourValue: "70",
             image: "/coinmarketcap.svg",
             lvl: "lvl ",
             image2: "/coin1.svg",
-            value: "10K"
         }
     ]
 
     const clickCard = (d) => {
-        if (user.coins >= d.value) {
+        if (user.coins >= market[d.key]["upgrade_coins_amount"][user[d.key+'_level']]) {
             let updatedUser = {
                 ...user,
-                coins: user.coins - d.value,
-                profit_perhour: parseInt(user.profit_perhour) + parseInt(d.perhourValue),
+                coins: user.coins - market[d.key]["upgrade_coins_amount"][user[d.key+'_level']],
             };
             updatedUser[d.key+'_level'] ++;
+            let profit_perhour = 0;
+            profit_perhour += market[d.key]["profit_perhours"][updatedUser[d.key + '_level']];
+            data.map((md) => {
+                if (user[md.key + '_level'] > 0 && md.key !== d.key)
+                    profit_perhour += market[md.key]["profit_perhours"][user[md.key+"_level"]];
+            });
+            updatedUser["profit_perhour"] = profit_perhour;
             setUser(updatedUser);
         }
     }
@@ -91,7 +86,7 @@ const MarketTab = ({user, setUser}) => {
                                     <p className='text-[8px]'>{d.content}</p>
                                     <div className='flex items-center gap-2'>
                                         <img width={15} height={15} src={d.image2} alt='' />
-                                        <p className='text-[8px]'>+{d.perhourValue}</p>
+                                        <p className='text-[8px]'>+{market[d.key]["profit_perhours"][user[d.key+'_level'] + 1]}</p>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +96,7 @@ const MarketTab = ({user, setUser}) => {
                                 <img width={1} height={1} src={"/Line 7.png"} alt='' />
                                 <div className='flex items-center gap-2'>
                                     <img width={20} height={20} src={d.image2} alt='' />
-                                    <p>{d.value}</p>
+                                    <p>{market[d.key]["upgrade_coins_amount"][user[d.key+'_level']]}</p>
                                 </div>
                             </div>
                         </div>

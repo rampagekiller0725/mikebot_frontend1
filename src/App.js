@@ -1,7 +1,7 @@
 import Nav from '../src/components/Navigation/nav';
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Cards from './components/exchange/Exchange';
 import MineRoute from './components/mine/MineRoute';
 import FriendRoute from './components/friends/FriendRoute';
