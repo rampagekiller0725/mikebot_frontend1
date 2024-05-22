@@ -3,6 +3,7 @@ import CardProps from '../reuseable/CardProps'
 import CardProps2 from '../reuseable/CardProps2'
 import CardProps3 from '../reuseable/CardProps3'
 import CoinCard from '../reuseable/CoinCard'
+import { levelData, toMoneyFormat } from '../../utils/tools'
 
 
 const Card = ({username, user, setUser}) => {
@@ -12,12 +13,12 @@ const Card = ({username, user, setUser}) => {
                 <CardProps
                     title={"Earn per tap"}
                     img1={'/coin1.svg'}
-                    value='+ 1'
+                    value={'+ ' + user.earn_pertap}
                     style='text-[#FF7E5C] text-[10px]'
                 />
                 <CardProps2
                     title='Coins to level up'
-                    value='5k'
+                    value={toMoneyFormat(levelData[user.level-1])}
                 />
                 <CardProps3
                     title='Profit per hour'

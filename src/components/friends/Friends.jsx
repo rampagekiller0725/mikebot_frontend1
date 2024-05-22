@@ -1,17 +1,36 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import AOS from 'aos'
 import "aos/dist/aos.css";
+import { initialUserState } from '../../utils/request';
+import { request } from '../../utils/request';
 
-const Friends = ({username}) => {
+const Friends = ({ username }) => {
+    const [user, setUser] = useState(initialUserState);
 
     useEffect(() => {
         AOS.init({
             easing: 'ease-in-out',
             duration: 700,
         });
+        request('/findUser', 'POST', { name: username }).then((res) => {
+            console.log("finduser backend called");
+            setUser(res.data.user);
+        });
     }, [])
 
 
+    useEffect(() => {
+        let updatedUser = user;
+        updatedUser = {
+            ...updatedUser,
+            timestamp: new Date()
+        }
+        request('/updateUser', 'POST', { user: user });
+    }, [user]);
+
+    const invite = () => {
+        window.open('https://t.me/share/url?url=https://t.me/MikePlayBot%0AHello! This is ' + user.name + '.%0ALets play with me&forward_messages=456', 'Forward Message', 'width=600,height=400');
+    }
     return (
         <div className='pt-[2%] px-[4%] h-[120vh] overflow-y-scroll flex flex-col relative'>
             {/* <div className='absolute w-[200px] h-[200px] rounded-full bg-[#00FC87] top-0 right-[-100px] z-[20] blur-lg opacity-10'></div> */}
@@ -64,7 +83,7 @@ const Friends = ({username}) => {
                     <img data-aos="zoom-in-right" src={"/monsters.svg"} alt={""} width={430} height={100} />
                 </div>
                 {/* <button className='bg-gradient-to-r from-[#1ED760] to-[#00FC87] w-full py-2 rounded-[8px]'>Invite a Friend</button> */}
-                <button className='bg-gradient-to-r from-[#1ED760] to-[#00FC87] w-full py-2 rounded-[8px] animate-ease-in-out'>Invite a Friend</button>
+                <button onClick={() => invite()} className='bg-gradient-to-r from-[#1ED760] to-[#00FC87] w-full py-2 rounded-[8px] animate-ease-in-out'>Invite a Friend</button>
 
             </div>
 

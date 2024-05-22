@@ -4,6 +4,7 @@ import { TbChevronRight } from 'react-icons/tb'
 import AOS from 'aos'
 import "aos/dist/aos.css";
 import { initialUserState, request } from '../../utils/request';
+import { levelData } from '../../utils/tools';
 
 const Mine = ({username}) => {
     const [user, setUser] = useState(initialUserState);
@@ -22,14 +23,14 @@ const Mine = ({username}) => {
 
     useEffect(() => {
         if (user === null) return;
-        document.getElementsByClassName('child-div')[0].style.width = user.coins / 5000 * 100 + '%';
+        document.getElementsByClassName('child-div')[0].style.width = user.coins / levelData[user.level-1] * 100 + '%';
         request('/updateUser', 'POST', {user: user});
     }, [user]);
 
     const increaseCoin = () => {
         if (user === null) return;
         var plusSpan = document.createElement("span");
-        plusSpan.innerHTML = '+'+user.level;
+        plusSpan.innerHTML = '+'+user.earn_pertap;
         var parentDiv = document.getElementsByClassName('area')[0];
         plusSpan.style = 'position: fixed; color: white; font-weight: bold; font-size: 3em; top: 0px';
         parentDiv.appendChild(plusSpan);
@@ -48,7 +49,7 @@ const Mine = ({username}) => {
         }
         setUser({
             ...user,
-            coins: user.coins + user.level
+            coins: user.coins + user.earn_pertap
         });
     }
 
@@ -73,7 +74,7 @@ const Mine = ({username}) => {
                     </span>
                     <span className='flex items-center gap-2'>
                         <p className='text-[#B0B4CF]'>Level</p>
-                        <p>1/9</p>
+                        <p>{user.level}/9</p>
                     </span>
                 </div>
                 <div>
