@@ -25,7 +25,7 @@ const Mine = ({ username }) => {
         if (user === null) return;
 
         let updatedUser = user;
-        if (user.coins >= levelData[user.level]) {
+        if (user.coins >= levelData[user.level-1]) {
             updatedUser.level++;
             updatedUser.earn_pertap++;
         }
