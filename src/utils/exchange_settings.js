@@ -8,12 +8,12 @@ export const market = {
         "profit_perhours": [0, 600],
     },
     "btc_pairs": {
-        "upgrade_coins_amount": [200],
-        "profit_perhours": [0, 40],
+        "upgrade_coins_amount": [200, 230, 260, 290, 320, 350, 380, 410, 440],
+        "profit_perhours": [0, 40, 43, 46, 49, 52, 55, 58, 61, 64, 67],
     },
     "eth_pairs": {
-        "upgrade_coins_amount": [300],
-        "profit_perhours": [0, 40],
+        "upgrade_coins_amount": [300, 330, 360, 390, 420, 450, 480, 510, 540],
+        "profit_perhours": [0, 40, 43, 46, 49, 52, 55, 58, 61, 64, 67],
     },
     "top_10_cmc_pairs": {
         "upgrade_coins_amount": [1000],
