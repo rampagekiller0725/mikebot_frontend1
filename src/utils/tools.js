@@ -14,3 +14,11 @@ export const toMoneyFormat = (data) => {
     if (data >= 1000) return data / 1000 + 'K';
     return data;
 }
+
+export const wait = async (ms) => {
+    return new Promise((res, rej) => {
+        setTimeout(() => {
+            res(true);
+        }, ms);
+    })
+}

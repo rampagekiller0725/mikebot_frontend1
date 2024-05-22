@@ -1,13 +1,15 @@
 import React from 'react';
 import { request } from '../../utils/request';
+import { wait } from '../../utils/tools';
 
 const JoinTGChannel = ({ open, setOpen, user, setUser }) => {
-    const joinTGChannel = () => {
+    const joinTGChannel = async () => {
         setUser({
             ...user,
             coins: user.coins + 1000,
             is_joined_tgchannel: 1,
         });
+        await wait(1000);
         window.open('https://t.me/MikeTokenAnn');
         setOpen(false);
     }

@@ -1,13 +1,15 @@
 import React from 'react';
 import { request } from '../../utils/request';
+import { wait } from '../../utils/tools';
 
 const JoinTGGroup = ({ open, setOpen, user, setUser }) => {
-    const joinTGGroup = () => {
+    const joinTGGroup = async () => {
         setUser({
             ...user,
             coins: user.coins + 1000,
             is_joined_tggroup: 1,
         });
+        await wait(1000);
         window.open('https://t.me/MikeToken'); 
         setOpen(false);
     }

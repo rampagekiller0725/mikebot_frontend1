@@ -1,12 +1,14 @@
 import React from 'react';
+import { wait } from '../../utils/tools';
 
 const JoinDiscord = ({ open, setOpen, user, setUser }) => {
-    const joinDiscord = () => {
+    const joinDiscord = async () => {
         setUser({
             ...user,
             coins: user.coins + 3000,
             is_joined_discord: 1,
         });
+        await wait(1000);
         window.open("https://discord.gg/bux6YUDxdH");
         setOpen(false);
     }

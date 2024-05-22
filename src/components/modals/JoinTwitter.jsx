@@ -1,12 +1,14 @@
 import React from 'react';
+import { wait } from '../../utils/tools';
 
 const JoinTwitter = ({ open, setOpen, user, setUser }) => {
-    const joinTwitter = () => {
+    const joinTwitter = async () => {
         setUser({
             ...user,
             coins: user.coins + 3000,
             is_joined_twitter: 1,
         });
+        await wait(1000);
         window.open("https://x.com/MikeTokenio");
         setOpen(false);
     }

@@ -1,12 +1,14 @@
 import React from 'react';
+import { wait } from '../../utils/tools';
 
 const JoinMarketCap = ({ open, setOpen, user, setUser }) => {
-    const joinMarketCap = () => {
+    const joinMarketCap = async () => {
         setUser({
             ...user,
             coins: user.coins + 3000,
             is_joined_coinmarket: 1,
         });
+        await wait(1000);
         window.open("https://coinmarketcap.com/currencies/miketoken/");
         setOpen(false);
     }
