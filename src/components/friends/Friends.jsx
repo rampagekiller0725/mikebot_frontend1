@@ -21,6 +21,20 @@ const Friends = ({ username }) => {
 
     useEffect(() => {
         let updatedUser = user;
+        if (user.coins >= levelData[user.level]) {
+            updatedUser.level++;
+            updatedUser.earn_pertap++;
+        }
+
+        if ((new Date()) - user.timestamp >= 3 * 1000 * 60 * 60 && open === false && user.profit_perhour !== 0) {
+            setOpen(true);
+        } else if ((new Date()) - user.timestamp >= 1000 * 60 * 60) {
+            updatedUser = {
+                ...updatedUser,
+                coins: updatedUser.coins + updatedUser.profit_perhour,
+                timestamp: new Date()
+            }
+        }
         updatedUser = {
             ...updatedUser,
             timestamp: new Date()

@@ -6,7 +6,7 @@ import "aos/dist/aos.css";
 import { initialUserState, request } from '../../utils/request';
 import { levelData } from '../../utils/tools';
 
-const Mine = ({username}) => {
+const Mine = ({ username }) => {
     const [user, setUser] = useState(initialUserState);
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const Mine = ({username}) => {
             duration: 700,
         });
 
-        request('/findUser', 'POST', {name: username}).then((res) => {
+        request('/findUser', 'POST', { name: username }).then((res) => {
             console.log("finduser backend called");
             setUser(res.data.user);
         });
@@ -23,14 +23,30 @@ const Mine = ({username}) => {
 
     useEffect(() => {
         if (user === null) return;
-        document.getElementsByClassName('child-div')[0].style.width = user.coins / levelData[user.level-1] * 100 + '%';
-        request('/updateUser', 'POST', {user: user});
+
+        let updatedUser = user;
+        if (user.coins >= levelData[user.level]) {
+            updatedUser.level++;
+            updatedUser.earn_pertap++;
+        }
+
+        if ((new Date()) - user.timestamp >= 3 * 1000 * 60 * 60 && open === false && user.profit_perhour !== 0) {
+            setOpen(true);
+        } else if ((new Date()) - user.timestamp >= 1000 * 60 * 60) {
+            updatedUser = {
+                ...updatedUser,
+                coins: updatedUser.coins + updatedUser.profit_perhour,
+                timestamp: new Date()
+            }
+        }
+        document.getElementsByClassName('child-div')[0].style.width = user.coins / levelData[user.level - 1] * 100 + '%';
+        request('/updateUser', 'POST', { user: updatedUser });
     }, [user]);
 
     const increaseCoin = () => {
         if (user === null) return;
         var plusSpan = document.createElement("span");
-        plusSpan.innerHTML = '+'+user.earn_pertap;
+        plusSpan.innerHTML = '+' + user.earn_pertap;
         var parentDiv = document.getElementsByClassName('area')[0];
         plusSpan.style = 'position: fixed; color: white; font-weight: bold; font-size: 3em; top: 0px';
         parentDiv.appendChild(plusSpan);
@@ -42,7 +58,7 @@ const Mine = ({username}) => {
                 clearInterval(id);
                 plusSpan.remove();
             } else {
-                pos ++;
+                pos++;
                 plusSpan.style.top = pos + 'px';
                 plusSpan.style.opacity = 1 - (pos / 100);
             }
@@ -65,7 +81,7 @@ const Mine = ({username}) => {
                     <p>Binance</p>
                 </div>
             </div>
-            <Card username={username} user={user} setUser={setUser}/>
+            <Card username={username} user={user} setUser={setUser} />
             <div className='flex flex-col gap-1'>
                 <div className='text-white flex w-full justify-between'>
                     <span className='flex items-center gap-2'>
