@@ -2,12 +2,12 @@ import React from 'react';
 
 const JoinTwitter = ({ open, setOpen, user, setUser }) => {
     const joinTwitter = () => {
-        window.open("https://x.com/MikeTokenio");
         setUser({
             ...user,
             coins: user.coins + 3000,
             is_joined_twitter: 1,
         });
+        window.open("https://x.com/MikeTokenio");
         setOpen(false);
     }
 
@@ -26,7 +26,7 @@ const JoinTwitter = ({ open, setOpen, user, setUser }) => {
                     <img width={30} height={30} src='/coin1.svg' alt='' />
                     <p className="text-sm">+ 3,000</p>
                 </div>
-                <button type="button" onClick={() => setOpen(false)} className="mt-2 w-full text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Check</button>
+                {/* <button type="button" onClick={() => setOpen(false)} className="mt-2 w-full text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Check</button> */}
             </div>
         </div>
     )
