@@ -12,6 +12,7 @@ import JoinTGGroup from '../modals/JoinTGGroup';
 import JoinTwitter from '../modals/JoinTwitter';
 import JoinDiscord from '../modals/JoinDiscord';
 import JoinMarketCap from '../modals/JoinMarketCap';
+import { levelData } from '../../utils/tools';
 
 const Earn = ({ username }) => {
   const [user, setUser] = useState(initialUserState);
@@ -40,9 +41,7 @@ const Earn = ({ username }) => {
         updatedUser.earn_pertap++;
     }
 
-    if ((new Date()) - user.timestamp >= 3 * 1000 * 60 * 60 && open === false && user.profit_perhour !== 0) {
-        setOpen(true);
-    } else if ((new Date()) - user.timestamp >= 1000 * 60 * 60) {
+    if ((new Date()) - user.timestamp >= 1000 * 60 * 60) {
         updatedUser = {
             ...updatedUser,
             coins: updatedUser.coins + updatedUser.profit_perhour,

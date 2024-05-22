@@ -36,9 +36,7 @@ const Cards = () => {
       updatedUser.earn_pertap ++;
     }
 
-    if ((new Date()) - user.timestamp >= 3 * 1000 * 60 * 60 && open === false && user.profit_perhour !== 0) {
-      setOpen(true);
-    } else if ((new Date()) - user.timestamp >= 1000 * 60 * 60) {
+    if ((new Date()) - user.timestamp >= 1000 * 60 * 60) {
       updatedUser = {
         ...updatedUser,
         coins: updatedUser.coins + updatedUser.profit_perhour,

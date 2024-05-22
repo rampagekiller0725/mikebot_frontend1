@@ -3,6 +3,7 @@ import AOS from 'aos'
 import "aos/dist/aos.css";
 import { initialUserState } from '../../utils/request';
 import { request } from '../../utils/request';
+import { levelData } from '../../utils/tools';
 
 const Friends = ({ username }) => {
     const [user, setUser] = useState(initialUserState);
@@ -26,9 +27,7 @@ const Friends = ({ username }) => {
             updatedUser.earn_pertap++;
         }
 
-        if ((new Date()) - user.timestamp >= 3 * 1000 * 60 * 60 && open === false && user.profit_perhour !== 0) {
-            setOpen(true);
-        } else if ((new Date()) - user.timestamp >= 1000 * 60 * 60) {
+        if ((new Date()) - user.timestamp >= 1000 * 60 * 60) {
             updatedUser = {
                 ...updatedUser,
                 coins: updatedUser.coins + updatedUser.profit_perhour,
