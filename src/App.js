@@ -6,6 +6,7 @@ import Cards from './components/exchange/Exchange';
 import MineRoute from './components/mine/MineRoute';
 import FriendRoute from './components/friends/FriendRoute';
 import EarnRoute from './components/earn/EarnRoute';
+import Onboarding from './components/onboarding/Onboarding';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <div className='bg-black'>
         <BrowserRouter>
           <Routes>
-            <Route path='/:username' element={<Cards />} />
+            <Route path='/:username' element={<Onboarding />} />
+            <Route path='/exchange/:username' element={<Cards />} />
             <Route path='/mine/:username' element={<MineRoute/>} />
             <Route path='/friends/:username' element={<FriendRoute/>} />
             <Route path='/earn/:username' element={<EarnRoute />} />

@@ -14,8 +14,8 @@ const Footer = ({username}) => {
         {
             image: '/binance.svg',
             title: 'Exchange',
-            active: "/",
-            link: "/" + username
+            active: "/exchange",
+            link: "/exchange/" + username
         },
         {
             image: '/mine.svg',
