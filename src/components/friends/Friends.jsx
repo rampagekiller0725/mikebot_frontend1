@@ -16,7 +16,7 @@ const Friends = ({ username, user, setUser }) => {
             ...user,
             invited_friends: user.invited_friends.push()
         })
-        window.open('https://t.me/share/url?url=https://t.me/MikePlayBot?username=' + username + '%0AHello! This is ' + user.name + '.%0ALets play with me%0Please type Hi {username} on bot to accept invitation.&forward_messages=456', 'Forward Message', 'width=600,height=400');
+        window.open('https://t.me/share/url?url=https://t.me/MikePlayBot?username=' + username + '%0AHello! This is ' + user.name + '.%0ALets play with me%0APlease type "Hi ' + user.name + '" on bot to accept invitation.&forward_messages=456', 'Forward Message', 'width=600,height=400');
     }
     return (
         <div className='pt-[2%] px-[4%] h-[120vh] overflow-y-scroll flex flex-col relative'>
