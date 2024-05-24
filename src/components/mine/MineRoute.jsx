@@ -4,13 +4,13 @@ import Footer from '../footer/Footer'
 import Mine from './Mine'
 import { useParams } from 'react-router-dom'
 
-const MineRoute = () => {
+const MineRoute = ({user, setUser}) => {
     const { username } = useParams()
 
     return (
         <div className='flex flex-col bg-black'>
             <Nav username={username}/>
-            <Mine username={username}/>
+            <Mine username={username} user={user} setUser={setUser}/>
             <Footer username={username}/>
         </div>
     )

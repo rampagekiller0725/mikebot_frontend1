@@ -3,42 +3,20 @@ import Card from '../exchange/Cards'
 import { TbChevronRight } from 'react-icons/tb'
 import AOS from 'aos'
 import "aos/dist/aos.css";
-import { initialUserState, request } from '../../utils/request';
 import { levelData } from '../../utils/tools';
 
-const Mine = ({ username }) => {
-    const [user, setUser] = useState(initialUserState);
+const Mine = ({ username, user, setUser }) => {
 
     useEffect(() => {
         AOS.init({
             easing: 'ease-in-out',
             duration: 700,
         });
-
-        request('/findUser', 'POST', { name: username }).then((res) => {
-            console.log("finduser backend called");
-            setUser(res.data.user);
-        });
     }, [])
 
     useEffect(() => {
         if (user === null) return;
-
-        let updatedUser = user;
-        if (user.coins >= levelData[user.level-1]) {
-            updatedUser.level++;
-            updatedUser.earn_pertap++;
-        }
-
-        if ((new Date()) - user.timestamp >= 1000 * 60 * 60) {
-            updatedUser = {
-                ...updatedUser,
-                coins: updatedUser.coins + updatedUser.profit_perhour,
-                timestamp: new Date()
-            }
-        }
         document.getElementsByClassName('child-div')[0].style.width = user.coins / levelData[user.level - 1] * 100 + '%';
-        request('/updateUser', 'POST', { user: updatedUser });
     }, [user]);
 
     const increaseCoin = () => {

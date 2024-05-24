@@ -14,8 +14,7 @@ import JoinDiscord from '../modals/JoinDiscord';
 import JoinMarketCap from '../modals/JoinMarketCap';
 import { levelData } from '../../utils/tools';
 
-const Earn = ({ username }) => {
-  const [user, setUser] = useState(initialUserState);
+const Earn = ({ username, user, setUser }) => {
   const [dailyModalOpen, setDailyModalOpen] = useState(false);
   const [joinTGChannelModalOpen, setJoinTGChannelModalOpen] = useState(false);
   const [joinTGGroupModalOpen, setJoinTGGroupModalOpen] = useState(false);
@@ -28,32 +27,9 @@ const Earn = ({ username }) => {
       easing: 'ease-in-out',
       duration: 700,
     });
-    request('/findUser', 'POST', { name: username }).then((res) => {
-      console.log("finduser backend called");
-      setUser(res.data.user);
-    });
+
+    console.log(user);
   }, [])
-
-  useEffect(() => {
-    let updatedUser = user;
-    if (user.coins >= levelData[user.level-1]) {
-        updatedUser.level++;
-        updatedUser.earn_pertap++;
-    }
-
-    if ((new Date()) - user.timestamp >= 1000 * 60 * 60) {
-        updatedUser = {
-            ...updatedUser,
-            coins: updatedUser.coins + updatedUser.profit_perhour,
-            timestamp: new Date()
-        }
-    }
-    updatedUser = {
-      ...updatedUser,
-      timestamp: new Date()
-    }
-    request('/updateUser', 'POST', { user: user });
-  }, [user]);
 
   const openModal = (desc) => {
     if (checkStatus(desc)) return;

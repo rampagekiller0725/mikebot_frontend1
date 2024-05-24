@@ -1,12 +1,20 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { TbChevronLeft, TbChevronRight } from 'react-icons/tb';
 import { Link, useParams } from 'react-router-dom';
+import { request } from '../../utils/request';
 
-const Onboarding = () => {
+const Onboarding = ({ user, setUser }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const { username } = useParams();
+
+  useEffect(() => {
+    request('/findUser', 'POST', { name: username }).then((res) => {
+      console.log("finduser backend called");
+      setUser(res.data.user);
+    });
+  }, []);
 
   const pages = [
     <div className='bg-black w-full h-[100vh] flex flex-col items-center justify-center text-white gap-10' key="page1">

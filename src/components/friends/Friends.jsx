@@ -1,48 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import AOS from 'aos'
 import "aos/dist/aos.css";
-import { initialUserState } from '../../utils/request';
-import { request } from '../../utils/request';
-import { levelData } from '../../utils/tools';
 
-const Friends = ({ username }) => {
-    const [user, setUser] = useState(initialUserState);
+const Friends = ({ username, user, setUser }) => {
 
     useEffect(() => {
         AOS.init({
             easing: 'ease-in-out',
             duration: 700,
         });
-        request('/findUser', 'POST', { name: username }).then((res) => {
-            console.log("finduser backend called");
-            setUser(res.data.user);
-        });
     }, [])
 
-
-    useEffect(() => {
-        let updatedUser = user;
-        if (user.coins >= levelData[user.level-1]) {
-            updatedUser.level++;
-            updatedUser.earn_pertap++;
-        }
-
-        if ((new Date()) - user.timestamp >= 1000 * 60 * 60) {
-            updatedUser = {
-                ...updatedUser,
-                coins: updatedUser.coins + updatedUser.profit_perhour,
-                timestamp: new Date()
-            }
-        }
-        updatedUser = {
-            ...updatedUser,
-            timestamp: new Date()
-        }
-        request('/updateUser', 'POST', { user: user });
-    }, [user]);
-
     const invite = () => {
-        window.open('https://t.me/share/url?url=https://t.me/MikePlayBot%0AHello! This is ' + user.name + '.%0ALets play with me&forward_messages=456', 'Forward Message', 'width=600,height=400');
+        setUser({
+            ...user,
+            invited_friends: user.invited_friends.push()
+        })
+        window.open('https://t.me/share/url?url=https://t.me/MikePlayBot?username=' + username + '%0AHello! This is ' + user.name + '.%0ALets play with me%0Please type Hi {username} on bot to accept invitation.&forward_messages=456', 'Forward Message', 'width=600,height=400');
     }
     return (
         <div className='pt-[2%] px-[4%] h-[120vh] overflow-y-scroll flex flex-col relative'>
@@ -91,7 +65,13 @@ const Friends = ({ username }) => {
                     <div className='w-full relative flex items-center justify-center bg-[black] z-[5000] rounded-[8px] border-t-[2px]  py-4 border-t-[#1DCD5C]'>
                         <div className='before:absolute before:inset-y-0 before:w-[0.8px] before:h-full before:content-[""] before:bg-gradient-to-b before:from-[#00FC87] before:to-transparent before:right-0'></div>
                         <div className='before:absolute before:inset-0 before:w-[0.5px] before:h-full before:content-[""] before:bg-gradient-to-b before:from-[#00FC87] before:to-transparent'></div>
-                        <p className='text-[#7C7C7C] text-[16px]'>You haven’t invited anyone yet</p>
+                        <div>
+                            {user.invited_friends.length === 0 ?
+                                <p className='text-[#7C7C7C] text-[16px]'>You haven’t invited anyone yet</p>
+                                :
+                                user.invited_friends.map((fr) => <div key={fr} className='text-[#7C7C7C] text-[16px]'>{fr}</div>)
+                            }
+                        </div>
                     </div>
                     <img data-aos="zoom-in-right" src={"/monsters.svg"} alt={""} width={430} height={100} />
                 </div>
