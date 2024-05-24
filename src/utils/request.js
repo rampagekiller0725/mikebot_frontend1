@@ -13,8 +13,8 @@ export const initialUserState = {
     gamefi_tokens_level: 0
 }
 
-// const baseUrl = 'https://mikebot-backend.onrender.com';
-const baseUrl = 'http://localhost:4000'
+const baseUrl = 'https://mikebot-backend.onrender.com';
+// const baseUrl = 'http://localhost:4000'
 export const request = (url, method, data) => {
     return axios(baseUrl + url, {
         method: method,
