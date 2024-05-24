@@ -5,14 +5,11 @@ import { taskList } from '../data'
 import AOS from 'aos'
 import "aos/dist/aos.css";
 import DailyReward from '../modals/DailyReward';
-import { request } from '../../utils/request';
-import { initialUserState } from '../../utils/request';
 import JoinTGChannel from '../modals/JoinTGChannel';
 import JoinTGGroup from '../modals/JoinTGGroup';
 import JoinTwitter from '../modals/JoinTwitter';
 import JoinDiscord from '../modals/JoinDiscord';
 import JoinMarketCap from '../modals/JoinMarketCap';
-import { levelData } from '../../utils/tools';
 
 const Earn = ({ username, user, setUser }) => {
   const [dailyModalOpen, setDailyModalOpen] = useState(false);
@@ -23,10 +20,10 @@ const Earn = ({ username, user, setUser }) => {
   const [joinCoinMarketCapModalOpen, setJoinCoinMarketCapModalOpen] = useState(false);
 
   useEffect(() => {
-    AOS.init({
-      easing: 'ease-in-out',
-      duration: 700,
-    });
+    // AOS.init({
+    //   easing: 'ease-in-out',
+    //   duration: 700,
+    // });
 
     console.log(user);
   }, [])
@@ -77,7 +74,7 @@ const Earn = ({ username, user, setUser }) => {
       </div>
       <div className='text-white flex flex-col gap-1'>
         <p>Tasks list</p>
-        <div data-aos="fade-up-left" className='flex flex-col gap-3'>
+        <div className='flex flex-col gap-3'>
           {
             taskList.map((t, i) => (
               <div key={i} className='px-4 py-1 bg-black border border-[#00FC87] flex w-full justify-between items-center rounded-[8px]' onClick={() => openModal(t.desc)}>
