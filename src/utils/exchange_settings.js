@@ -1,11 +1,11 @@
 export const market = {
     "fan_tokens": {
-        "upgrade_coins_amount": [10000],
-        "profit_perhours": [0, 965],
+        "upgrade_coins_amount": [10000, 13000, 16000, 19000, 22000, 25000, 28000, 31000, 34000],
+        "profit_perhours": [0, 965, 1265, 1565, 1865, 2165, 2465, 2765, 3065, 3365],
     },
     "staking": {
-        "upgrade_coins_amount": [10000],
-        "profit_perhours": [0, 600],
+        "upgrade_coins_amount": [10000, 13000, 16000, 19000, 22000, 25000, 28000, 31000, 34000],
+        "profit_perhours": [0, 600, 900, 1200, 1500, 1800, 2100, 2400, 2700, 3000],
     },
     "btc_pairs": {
         "upgrade_coins_amount": [200, 230, 260, 290, 320, 350, 380, 410, 440],
@@ -16,11 +16,11 @@ export const market = {
         "profit_perhours": [0, 40, 43, 46, 49, 52, 55, 58, 61, 64, 67],
     },
     "top_10_cmc_pairs": {
-        "upgrade_coins_amount": [1000],
-        "profit_perhours": [0, 80],
+        "upgrade_coins_amount": [1000, 1300, 1600, 1900, 2200, 2500, 2800, 3100, 3400],
+        "profit_perhours": [0, 80, 110, 140, 170, 300, 330, 360, 390, 420],
     },
     "gamefi_tokens": {
-        "upgrade_coins_amount": [10000],
-        "profit_perhours": [0, 70],
+        "upgrade_coins_amount": [10000, 13000, 16000, 19000, 22000, 25000, 28000, 31000, 34000],
+        "profit_perhours": [0, 70, 100, 130, 160, 190, 220, 250, 280, 310],
     }
 }

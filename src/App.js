@@ -65,6 +65,7 @@ function App() {
             <Route path='/mine/:username' element={<MineRoute user={user} setUser={setUser} />} />
             <Route path='/friends/:username' element={<FriendRoute user={user} setUser={setUser} />} />
             <Route path='/earn/:username' element={<EarnRoute user={user} setUser={setUser} />} />
+            <Route path='/airdrop/:username' element={<Cards user={user} setUser={setUser} />} />
           </Routes>
         </BrowserRouter>
       </div>
