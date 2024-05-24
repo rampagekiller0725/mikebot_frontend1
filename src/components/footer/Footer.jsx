@@ -38,8 +38,8 @@ const Footer = ({username}) => {
         {
             image: '/logo.svg',
             title: 'Airdrop',
-            active: "/airdrop",
-            link: "/airdrop/" + username
+            active: "/exchange",
+            link: "/exchange/" + username
         }
     ]
     const handleActiveClicked = (activeItem) => {
