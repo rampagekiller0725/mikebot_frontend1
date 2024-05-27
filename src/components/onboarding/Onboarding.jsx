@@ -12,6 +12,7 @@ const Onboarding = ({ user, setUser }) => {
   useEffect(() => {
     request('/findUser', 'POST', { name: username }).then((res) => {
       console.log("finduser backend called");
+      console.log(res.data.user);
       setUser(res.data.user);
     });
   }, []);
