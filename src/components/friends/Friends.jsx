@@ -66,10 +66,12 @@ const Friends = ({ username, user, setUser }) => {
                         <div className='before:absolute before:inset-y-0 before:w-[0.8px] before:h-full before:content-[""] before:bg-gradient-to-b before:from-[#00FC87] before:to-transparent before:right-0'></div>
                         <div className='before:absolute before:inset-0 before:w-[0.5px] before:h-full before:content-[""] before:bg-gradient-to-b before:from-[#00FC87] before:to-transparent'></div>
                         <div>
-                            {(user.invited_friends && user.invited_friends.length === 0) ?
+                            {(Object.isArray(user.invited_friends) && (
+                                user.invited_friends.length === 0) ?
                                 <p className='text-[#7C7C7C] text-[16px]'>You haven’t invited anyone yet</p>
                                 :
                                 user.invited_friends.map((fr) => <div key={fr} className='text-[#7C7C7C] text-[16px]'>{fr}</div>)
+                            )
                             }
                         </div>
                     </div>
