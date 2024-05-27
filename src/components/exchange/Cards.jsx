@@ -7,6 +7,8 @@ import { levelData, toMoneyFormat } from '../../utils/tools'
 
 
 const Card = ({username, user, setUser}) => {
+
+    console.log(user);
     return (
         <div className='flex flex-col gap-4 px-[4%]'>
             <div className='grid grid-cols-3 gap-3 w-full items-center'>

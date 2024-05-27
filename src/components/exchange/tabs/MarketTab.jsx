@@ -71,6 +71,7 @@ const MarketTab = ({user, setUser}) => {
         }
     }
 
+    console.log(user);
     return (
         <div className='grid grid-cols-2 overflow-y-auto gap-2 w-full'>
             {
