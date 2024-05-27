@@ -4,6 +4,7 @@ export const initialUserState = {
     name: "____",
     level: 1,
     profit_perhour: 0,
+    earn_pertap: 0,
     coins: 0,
     fan_tokens_level: 0,
     staking_level: 0,
