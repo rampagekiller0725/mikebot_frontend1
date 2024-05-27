@@ -10,7 +10,16 @@ export const initialUserState = {
     btc_pairs_level: 0,
     eth_pairs_level: 0,
     top_10_cmc_pairs_level: 0,
-    gamefi_tokens_level: 0
+    gamefi_tokens_level: 0,
+    timestamp: 0,
+    invited_friends: [],
+    is_joined_discord: 0,
+    is_joined_marketcap: 0,
+    is_joined_tgchannel: 0,
+    is_joined_tggroup: 0,
+    is_joined_twitter: 0,
+    daily_reward_time: 0,
+    daily_reward_value: 0
 }
 
 const baseUrl = 'https://mikebot-backend.onrender.com';
