@@ -15,6 +15,7 @@ function App() {
   var timer = false;
 
   useEffect(() => {
+    if (!user) return;
     let updatedUser = user;
     if (user.coins >= levelData[user.level - 1]) {
       updatedUser.level++;
