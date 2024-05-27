@@ -4,7 +4,7 @@ export const initialUserState = {
     name: "____",
     level: 1,
     profit_perhour: 0,
-    earn_pertap: 0,
+    earn_pertap: 1,
     coins: 0,
     fan_tokens_level: 0,
     staking_level: 0,
@@ -23,8 +23,8 @@ export const initialUserState = {
     daily_reward_value: 0
 }
 
-// const baseUrl = 'https://mikebot-backend.onrender.com';
-const baseUrl = 'https://mikebot-backend.vercel.app';
+const baseUrl = 'https://mikebot-backend.onrender.com';
+// const baseUrl = 'https://mikebot-backend.vercel.app';
 // const baseUrl = 'http://localhost:4000'
 export const request = (url, method, data) => {
     return axios(baseUrl + url, {
